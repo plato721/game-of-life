@@ -25,4 +25,24 @@ describe Cell do
     cell.flip_alive
     expect(cell.alive?).to be_truthy
   end
+
+  it 'has a file representation for alive' do
+    cell = Cell.new(alive: true)
+    expect(cell.to_file).to eq("*")
+  end
+
+  it 'has a file reprsentation for dead' do
+    cell = Cell.new(alive: false)
+    expect(cell.to_file).to eq("-")
+  end
+
+  it 'has a string reprsentation for alive' do
+    cell = Cell.new(alive: true)
+    expect(cell.to_s).to eq("*")
+  end
+
+  it 'has a string representation for dead' do
+    cell = Cell.new(alive: false)
+    expect(cell.to_s).to eq(" ")
+  end
 end

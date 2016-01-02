@@ -23,6 +23,14 @@ class Cell
     [x, y]
   end
 
+  def to_s
+    self.alive? ? "*" : " "
+  end
+
+  def to_file
+    self.alive? ? "*" : "-"
+  end
+
   def flip_alive
     self.alive = !self.alive
   end
