@@ -22,6 +22,12 @@ EOF
     expect(game.over?).to be_truthy
   end
 
+  it 'knows when the game is over with greater than 0 alive' do
+    game = Game.new(pattern: "**\n**\n", length: 2, height: 2)
+
+    expect(game.over?).to be_truthy
+  end
+
   context "updating cells" do
     before do
           pattern = <<-EOF

@@ -1,3 +1,5 @@
+require './lib/cell.rb'
+
 class Board
   attr_reader :pattern, :length, :height
   attr_accessor :grid
@@ -129,5 +131,9 @@ class Board
       end
       output << "\n"
     end
+  end
+
+  def copy
+    Board.new(pattern: to_file, length: length, height: height)
   end
 end
