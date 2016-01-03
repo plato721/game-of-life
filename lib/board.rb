@@ -109,6 +109,10 @@ class Board
     end
   end
 
+  def live_neighbors_for(cell)
+    neighbors_for(cell).count { |cell| cell.alive? }
+  end
+
   def to_s
     [*0...height].each_with_object("") do |y, output|
       [*0...length].each do |x|

@@ -94,6 +94,12 @@ EOF
       expect(neighbor_coords.sort).to eq(expected.sort)
     end
 
+    it "knows live neighbors for a cell" do
+      cell = @board.cell_at([2,2])
+
+      expect(@board.live_neighbors_for(cell)).to eq(5)
+    end
+
     it "knows neighbors for top left" do
       cell = @board.cell_at([0,0])
       neighbors = @board.neighbors_for(cell)
