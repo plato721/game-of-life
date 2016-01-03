@@ -44,5 +44,18 @@ EOF
       expect(cell.alive?).to be_truthy
       expect(@game.alive_next_round?(cell)).to be_falsey
     end
+
+    it "returns true for alive cell with 3 neighbors" do
+      cell = @game.current_board.cell_at([1,1])
+      expect(cell.alive?).to be_truthy
+      expect(@game.alive_next_round?(cell)).to be_truthy
+    end
+
+    it "returns false for alive cell with more than 3 neighbors" do
+      cell = @game.current_board.cell_at([1,2])
+      expect(cell.alive?).to be_truthy
+      expect(@game.alive_next_round?(cell)).to be_falsey
+    end
+
   end
 end
