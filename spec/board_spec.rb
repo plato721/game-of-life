@@ -72,20 +72,35 @@ EOF
     end
   end
 
-  it "knows neighbors for a cell" do
-    pattern = <<-EOF
+  context "neighbors" do
+    before do
+          pattern = <<-EOF
 -*--
 **--
 -*-*
 *-**
 EOF
-    board = Board.new(pattern: pattern, height: 4, length: 4)
+    @board = Board.new(pattern: pattern, height: 4, length: 4)
 
-    cell = board.cell_at([2,2])
-    neighbors = board.neighbors_for(cell)
-    neighbor_coords = neighbors.map {|cell| cell.coords }
+    end
 
-    expected = [[1,1], [2,1], [3,1], [1,2], [3,2], [1,3], [2,3], [3,3]].sort
-    expect(neighbor_coords.sort).to eq(expected.sort)
+    it "knows neighbors for a cell" do
+
+      cell = @board.cell_at([2,2])
+      neighbors = @board.neighbors_for(cell)
+      neighbor_coords = neighbors.map {|cell| cell.coords }
+
+      expected = [[1,1], [2,1], [3,1], [1,2], [3,2], [1,3], [2,3], [3,3]]
+      expect(neighbor_coords.sort).to eq(expected.sort)
+    end
+
+    it "knows neighbors for top left" do
+      cell = @board.cell_at([0,0])
+      neighbors = @board.neighbors_for(cell)
+      neighbor_coords = neighbors.map {|cell| cell.coords }
+
+      expected = [[1,0],[0,1],[1,1]]
+      expect(neighbor_coords.sort).to eq(expected.sort)
+    end
   end
 end
