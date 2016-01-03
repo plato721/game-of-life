@@ -107,7 +107,9 @@ EOF
 
       expected = [[1,0],[0,1],[1,1]]
       expect(neighbor_coords.sort).to eq(expected.sort)
+      expect(@board.live_neighbors_for(cell)).to eq(3)
     end
+
 
     it "knows neighbors for top right" do
       cell = @board.cell_at([3,0])
