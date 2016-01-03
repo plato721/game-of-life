@@ -71,4 +71,21 @@ EOF
 
     end
   end
+
+  it "knows neighbors for a cell" do
+    pattern = <<-EOF
+-*--
+**--
+-*-*
+*-**
+EOF
+    board = Board.new(pattern: pattern, height: 4, length: 4)
+
+    cell = board.cell_at([2,2])
+    neighbors = board.neighbors_for(cell)
+    neighbor_coords = neighbors.map {|cell| cell.coords }
+
+    expected = [[1,1], [2,1], [3,1], [1,2], [3,2], [1,3], [2,3], [3,3]].sort
+    expect(neighbor_coords.sort).to eq(expected.sort)
+  end
 end

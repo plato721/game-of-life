@@ -51,6 +51,64 @@ class Board
       pattern: nil}
   end
 
+  def off_board_above?(coords)
+    coords.last < 0
+  end
+
+  def off_board_below?(coords)
+    coords.last >= height
+  end
+
+  def off_board_right?(coords)
+    coords.first >= length
+  end
+
+  def off_board_left?(coords)
+    coords.first < 0
+  end
+
+  def on_board?(coords)
+    !(off_board_left?(coords) ||
+      off_board_right?(coords) ||
+      off_board_above?(coords) ||
+      off_board_below?(coords))
+  end
+
+  def coords_adjacent(coords)
+    [[coords.first - 1, coords.last],
+     [coords.first + 1, coords.last]]
+  end
+
+  def coords_above(coords)
+    [[coords.first - 1, coords.last - 1],
+     [coords.first, coords.last - 1],
+     [coords.first + 1, coords.last - 1]]
+  end
+
+  def coords_below(coords)
+    [[coords.first - 1, coords.last + 1],
+     [coords.first, coords.last + 1],
+     [coords.first + 1, coords.last + 1]]
+  end
+
+  def raw_neighbor_coords_for(coords)
+    coords_above(coords)
+    .concat(coords_below(coords))
+    .concat(coords_adjacent(coords))
+  end
+
+  def neighbor_coords_for(coords)
+    raw_neighbor_coords_for(coords).select do |coords|
+      on_board?(coords)
+    end
+  end
+
+  def neighbors_for(cell)
+    neighbor_coords_for(cell.coords).map do |coords|
+      self.grid[coords.first][coords.last]
+    end
+  end
+
   def to_s
     [*0...height].each_with_object("") do |y, output|
       [*0...length].each do |x|
