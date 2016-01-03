@@ -50,4 +50,22 @@ class Board
       height: 15,
       pattern: nil}
   end
+
+  def to_s
+    [*0...height].each_with_object("") do |y, output|
+      [*0...length].each do |x|
+        output << self.grid[x][y].to_s
+      end
+      output << "\n"
+    end
+  end
+
+  def to_file
+    [*0...height].each_with_object("") do |y, output|
+      [*0...length].each do |x|
+        output << self.grid[x][y].to_file
+      end
+      output << "\n"
+    end
+  end
 end

@@ -49,7 +49,25 @@ EOF
       expect(board.cell_at([1,0]).alive?).to be_truthy
     end
 
-    it 'has a string representation' do
+    it 'has a file representation' do
+      expect(@board.to_file).to eq(@pattern)
+    end
+
+    it 'has a string reprentation' do
+      pattern = <<-EOF
+-*--
+**--
+-*-*
+*-**
+EOF
+      show = <<-EOF
+ *  
+**  
+ * *
+* **
+EOF
+      board = Board.new(pattern: pattern, length: 4, height: 4)
+      expect(board.to_s).to eq(show)
 
     end
   end
