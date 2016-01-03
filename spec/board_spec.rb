@@ -102,5 +102,14 @@ EOF
       expected = [[1,0],[0,1],[1,1]]
       expect(neighbor_coords.sort).to eq(expected.sort)
     end
+
+    it "knows neighbors for top right" do
+      cell = @board.cell_at([3,0])
+      neighbors = @board.neighbors_for(cell)
+      neighbor_coords = neighbors.map {|cell| cell.coords }
+
+      expected = [[2,0],[2,1],[3,1]]
+      expect(neighbor_coords.sort).to eq(expected.sort)
+    end
   end
 end
