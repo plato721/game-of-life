@@ -10,9 +10,9 @@ class Cell
   end
 
   def defaults
-    {alive: false,
+    { alive: false,
       x: 0,
-      y: 0}
+      y: 0 }
   end
 
   def alive?

@@ -24,9 +24,9 @@ describe Board do
 ---------------
 ------*--------
 ---------------
-EOF
+      EOF
 
-      @board = Board.new(pattern:@pattern)
+      @board = Board.new(pattern: @pattern)
     end
     it 'reads in a pattern' do
 
@@ -42,11 +42,11 @@ EOF
 **--
 -*-*
 *-**
-EOF
+      EOF
       board = Board.new(pattern: pattern)
 
-      expect(board.cell_at([0,0]).alive?).to be_falsey
-      expect(board.cell_at([1,0]).alive?).to be_truthy
+      expect(board.cell_at([0, 0]).alive?).to be_falsey
+      expect(board.cell_at([1, 0]).alive?).to be_truthy
     end
 
     it 'has a file representation' do
@@ -59,13 +59,13 @@ EOF
 **--
 -*-*
 *-**
-EOF
+      EOF
       show = <<-EOF
  *  
 **  
  * *
 * **
-EOF
+      EOF
       board = Board.new(pattern: pattern, length: 4, height: 4)
       expect(board.to_s).to eq(show)
 
@@ -74,49 +74,48 @@ EOF
 
   context "neighbors" do
     before do
-          pattern = <<-EOF
+      pattern = <<-EOF
 -*--
 **--
 -*-*
 *-**
-EOF
-    @board = Board.new(pattern: pattern, height: 4, length: 4)
+      EOF
+      @board = Board.new(pattern: pattern, height: 4, length: 4)
 
     end
 
     it "knows neighbors for a cell" do
 
-      cell = @board.cell_at([2,2])
+      cell = @board.cell_at([2, 2])
       neighbors = @board.neighbors_for(cell)
-      neighbor_coords = neighbors.map {|cell| cell.coords }
+      neighbor_coords = neighbors.map { |cell| cell.coords }
 
-      expected = [[1,1], [2,1], [3,1], [1,2], [3,2], [1,3], [2,3], [3,3]]
+      expected = [[1, 1], [2, 1], [3, 1], [1, 2], [3, 2], [1, 3], [2, 3], [3, 3]]
       expect(neighbor_coords.sort).to eq(expected.sort)
     end
 
     it "knows live neighbors for a cell" do
-      cell = @board.cell_at([2,2])
+      cell = @board.cell_at([2, 2])
 
       expect(@board.live_neighbors_for(cell)).to eq(5)
     end
 
     it "knows neighbors for top left" do
-      cell = @board.cell_at([0,0])
+      cell = @board.cell_at([0, 0])
       neighbors = @board.neighbors_for(cell)
-      neighbor_coords = neighbors.map {|cell| cell.coords }
+      neighbor_coords = neighbors.map { |cell| cell.coords }
 
-      expected = [[1,0],[0,1],[1,1]]
+      expected = [[1, 0], [0, 1], [1, 1]]
       expect(neighbor_coords.sort).to eq(expected.sort)
       expect(@board.live_neighbors_for(cell)).to eq(3)
     end
 
-
     it "knows neighbors for top right" do
-      cell = @board.cell_at([3,0])
+      cell = @board.cell_at([3, 0])
       neighbors = @board.neighbors_for(cell)
-      neighbor_coords = neighbors.map {|cell| cell.coords }
+      neighbor_coords = neighbors.map { |cell| cell.coords }
 
-      expected = [[2,0],[2,1],[3,1]]
+      expected = [[2, 0], [2, 1], [3, 1]]
       expect(neighbor_coords.sort).to eq(expected.sort)
     end
   end

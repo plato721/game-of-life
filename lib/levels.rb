@@ -6,6 +6,6 @@ class Levels
 -**--
 --*--
 -----
-EOF
+    EOF
   end
 end
