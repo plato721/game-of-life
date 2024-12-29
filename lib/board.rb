@@ -4,13 +4,13 @@ class Board
   attr_reader :pattern, :length, :height
   attr_accessor :grid
 
-  def initialize(args={})
+  def initialize(args = {})
     args = defaults.merge(args)
 
     @length = args[:length]
     @height = args[:height]
     @pattern = args[:pattern] || random_pattern(self.length, self.height)
-    @grid = Array.new(self.length){ Array.new(self.height) }
+    @grid = Array.new(self.length) { Array.new(self.height) }
     load_board(self.pattern)
   end
 
@@ -33,7 +33,7 @@ class Board
   end
 
   def get_cell_args(x, y, indicator)
-    {x: x, y: y, alive: alive_from(indicator)}
+    { x: x, y: y, alive: alive_from(indicator) }
   end
 
   def alive_from(indicator)
@@ -42,15 +42,15 @@ class Board
 
   def random_pattern(length, height)
     [*0...height].each_with_object("") do |y, row|
-      length.times { row << ['*','-'].sample }
+      length.times { row << ['*', '-'].sample }
       row << "\n"
     end
   end
 
   def defaults
-    {length: 15,
+    { length: 15,
       height: 15,
-      pattern: nil}
+      pattern: nil }
   end
 
   def off_board_above?(coords)
@@ -95,8 +95,8 @@ class Board
 
   def raw_neighbor_coords_for(coords)
     coords_above(coords)
-    .concat(coords_below(coords))
-    .concat(coords_adjacent(coords))
+      .concat(coords_below(coords))
+      .concat(coords_adjacent(coords))
   end
 
   def neighbor_coords_for(coords)

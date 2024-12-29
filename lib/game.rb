@@ -28,8 +28,8 @@ class Game
   def update_board
     [*0...height].each_with_object(current_board.copy) do |y, next_board|
       [*0...length].each do |x|
-        current_cell = current_board.cell_at([x,y])
-        next_board.cell_at([x,y]).alive = alive_next_round?(current_cell)
+        current_cell = current_board.cell_at([x, y])
+        next_board.cell_at([x, y]).alive = alive_next_round?(current_cell)
       end
     end
   end

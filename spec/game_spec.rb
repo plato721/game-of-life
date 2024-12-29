@@ -12,7 +12,7 @@ describe Game do
 **--
 -*-*
 *-**
-EOF
+    EOF
     game = Game.new(pattern: pattern)
   end
 
@@ -30,35 +30,35 @@ EOF
 
   context "updating cells" do
     before do
-          pattern = <<-EOF
+      pattern = <<-EOF
 -*--
 **--
 -*-*
 *-**
-EOF
+      EOF
       @game = Game.new(pattern: pattern, length: 4, height: 4)
     end
 
     it "returns true for dead cell with 3 neighbors" do
-      cell = @game.current_board.cell_at([0,0])
+      cell = @game.current_board.cell_at([0, 0])
       expect(cell.alive?).to be_falsey
       expect(@game.alive_next_round?(cell)).to be_truthy
     end
 
     it "returns false for alive cell with 1 neighbor" do
-      cell = @game.current_board.cell_at([0,3])
+      cell = @game.current_board.cell_at([0, 3])
       expect(cell.alive?).to be_truthy
       expect(@game.alive_next_round?(cell)).to be_falsey
     end
 
     it "returns true for alive cell with 3 neighbors" do
-      cell = @game.current_board.cell_at([1,1])
+      cell = @game.current_board.cell_at([1, 1])
       expect(cell.alive?).to be_truthy
       expect(@game.alive_next_round?(cell)).to be_truthy
     end
 
     it "returns false for alive cell with more than 3 neighbors" do
-      cell = @game.current_board.cell_at([1,2])
+      cell = @game.current_board.cell_at([1, 2])
       expect(cell.alive?).to be_truthy
       expect(@game.alive_next_round?(cell)).to be_falsey
     end
